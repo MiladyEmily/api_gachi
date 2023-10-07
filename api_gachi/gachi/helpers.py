@@ -42,7 +42,6 @@ GACHICLONE = {
 
 # добавить, что если в конце ей или эй, то Ass
 
-
 def gaching(word):
     return getGachi(word.lower())
 
