@@ -37,11 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gachi.app.GachiConfig',
-    'rest_framework', 
-    'rest_framework.authtoken', 
-    'django_filters', 
-    'djoser',
+    'gachi.apps.GachiConfig',
+    'api.apps.ApiConfig',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
