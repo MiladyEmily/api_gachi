@@ -74,6 +74,8 @@ TRANSLIT = {
     'э': 'ei',
     'ю': 'u',
     'я': 'ia',
+    ' ': '_',
+    '-': '-'
 }
 
 
@@ -97,7 +99,6 @@ def getGachi(word, start = 0):
 
 def translit_name(name):
     translit_name = ''
-    name = name.lower()
     for char in name:
         if char in TRANSLIT:
             translit_name += TRANSLIT[char]

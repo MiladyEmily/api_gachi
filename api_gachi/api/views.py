@@ -10,14 +10,16 @@ from .serializers import NameSerializer
 @api_view(['POST',])  # Применили декоратор и указали разрешённые методы
 def gaching_name(request):
     name = request.data['name']
+    status_code = status.HTTP_200_OK
     if not Name.objects.filter(name=name).exists():
+        translit = translit_name(name.lower())
         basename = BaseName.objects.create(
             basename=name,
-            slug=translit_name(name),
+            slug=translit,
         )
-        name = Name.objects.create(
+        name_obj = Name.objects.create(
             name=name,
-            slug=translit_name(name),
+            slug=translit,
             basename=basename
             )
         gachies = gaching(name)
@@ -25,8 +27,10 @@ def gaching_name(request):
         for gachi in gachies:
             Gachi.objects.create(
                 gachi=gachi,
-                name = name
+                name = name_obj
             )
-    serializer = NameSerializer(data=request.data)
-    return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #return Response({'name': name, 'gachi': gaching(name)})
+        status_code = status.HTTP_201_CREATED
+    else:
+        name_obj = Name.objects.filter(name=name)[0]
+    serializer = NameSerializer(name_obj)
+    return Response(serializer.data, status=status_code)
