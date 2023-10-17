@@ -40,8 +40,44 @@ GACHICLONE = {
     "иго" : "Nigga",
     }
 
-# добавить, что если в конце ей или эй, то Ass
+TRANSLIT = {
+    'а': 'a',
+    'б': 'b',
+    'в': 'v',
+    'г': 'g',
+    'д': 'd',
+    'е': 'e',
+    'ё': 'yo',
+    'ж': 'zh',
+    'з': 'z',
+    'и': 'i',
+    'й': 'j',
+    'к': 'k',
+    'л': 'l',
+    'м': 'm',
+    'н': 'n',
+    'о': 'o',
+    'п': 'p',
+    'р': 'r',
+    'с': 's',
+    'т': 't',
+    'у': 'u',
+    'ф': 'f',
+    'х': 'kh',
+    'ц': 'ts',
+    'ч': 'ch',
+    'ш': 'sh',
+    'щ': 'shh',
+    'ъ': 'ie',
+    'ы': 'y',
+    'ь': '',
+    'э': 'ei',
+    'ю': 'u',
+    'я': 'ia',
+}
 
+
+# добавить, что если в конце ей или эй, то Ass
 def gaching(word):
     return getGachi(word.lower())
 
@@ -58,3 +94,11 @@ def getGachi(word, start = 0):
         if len(gachied) - end_letter > 1:
             variants += getGachi(gachied, end_letter)
     return variants
+
+def translit_name(name):
+    translit_name = ''
+    name = name.lower()
+    for char in name:
+        if char in TRANSLIT:
+            translit_name += TRANSLIT[char]
+    return translit_name
