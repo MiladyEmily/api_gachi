@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import gaching_name
+from .views import NameViewSet
 
 urlpatterns = [
-    path('gaching/', gaching_name),
+    path('gaching/', NameViewSet.as_view({'post': 'create'})),
 ]

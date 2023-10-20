@@ -18,7 +18,7 @@ class Name(models.Model):
     Вариация имени.
     Связано с базовым именем и гачами один-ко-многим.
     """
-    name = models.CharField('Имя', max_length=200, unique=True)
+    name = models.CharField('Имя', max_length=200)
     slug = models.SlugField('Уникальный слаг', unique=True, max_length=200)
     basename = models.ForeignKey(
         BaseName,
