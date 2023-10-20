@@ -92,6 +92,7 @@ def getGachi(word, start = 0):
             continue
         end_letter = start_letter + len(gachi)
         gachied = word.replace(gachi, GACHICLONE[gachi])
+
         variants.append(gachied)
         if len(gachied) - end_letter > 1:
             variants += getGachi(gachied, end_letter)
