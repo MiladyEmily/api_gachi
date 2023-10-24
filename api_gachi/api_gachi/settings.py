@@ -16,8 +16,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gachi.apps.GachiConfig',
     'api.apps.ApiConfig',
+    'gachi.apps.GachiConfig',
     'rest_framework',
     'rest_framework.authtoken',
 ]
