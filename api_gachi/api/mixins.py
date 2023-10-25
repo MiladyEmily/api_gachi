@@ -8,3 +8,9 @@ class GetPostViewSet(
     viewsets.GenericViewSet
 ):
     pass
+
+class GetViewSet(
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+    pass

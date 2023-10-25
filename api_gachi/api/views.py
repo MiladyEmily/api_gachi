@@ -1,8 +1,8 @@
 from rest_framework import permissions
 
-from gachi.models import Name
-from .serializers import NamePostSerializer, NameGetSerializer
-from .mixins import GetPostViewSet
+from gachi.models import Name, Gachi, BaseName
+from .serializers import NamePostSerializer, NameGetSerializer, GachiSerializer, BaseNameSerializer
+from .mixins import GetPostViewSet, GetViewSet
 
 
 class NameViewSet(GetPostViewSet):
@@ -15,3 +15,13 @@ class NameViewSet(GetPostViewSet):
         if self.request.method == 'GET':
             return NameGetSerializer
         return NamePostSerializer
+
+
+class GachiViewSet(GetViewSet):
+    queryset = Gachi.objects.all()
+    serializer_class = GachiSerializer
+
+
+class BaseNameViewSet(GetViewSet):
+    queryset = BaseName.objects.all()
+    serializer_class = BaseNameSerializer

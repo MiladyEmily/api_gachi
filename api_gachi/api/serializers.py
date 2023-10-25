@@ -55,3 +55,30 @@ class NamePostSerializer(serializers.ModelSerializer):
             Gachi.objects.bulk_create(bulk_gachies)
             return name_obj
         return Name.objects.filter(name=name)[0]
+
+
+class GachiSerializer(serializers.ModelSerializer):
+    basename = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Gachi
+        fields = ('gachi', 'basename')
+
+    def get_basename(self, obj):
+        return obj.name.basename.basename
+
+
+class BaseNameSerializer(serializers.ModelSerializer):
+    name_variants = serializers.SlugRelatedField(
+        many=True,
+        slug_field='name',
+        queryset = Name.objects.all()
+    )
+    gachies = serializers.SerializerMethodField()
+
+    class Meta:
+        model = BaseName
+        fields = ('basename', 'name_variants', 'gachies')
+    
+    def get_gachies(self, obj):
+        return Gachi.objects.filter(name__basename=obj).values_list('gachi', flat=True)
