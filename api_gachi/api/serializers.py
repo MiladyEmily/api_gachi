@@ -62,7 +62,7 @@ class GachiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Gachi
-        fields = ('gachi', 'basename')
+        fields = ('gachi', 'basename', 'likes', 'dislikes')
 
     def get_basename(self, obj):
         return obj.name.basename.basename
