@@ -43,3 +43,6 @@ class Gachi(models.Model):
         related_name='gachies',
         verbose_name='Имя',
     )
+    likes = models.IntegerField('Лайки', default = 0)
+    dislikes = models.IntegerField('Дизлайки', default = 0)
+    rating = models.IntegerField('Рейтинг', default = 0)
