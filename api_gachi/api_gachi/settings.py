@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'gachi.apps.GachiConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,7 @@
-from rest_framework import permissions, status
+from rest_framework import permissions, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 from gachi.models import Name, Gachi, BaseName
 from .serializers import NamePostSerializer, NameGetSerializer, GachiSerializer, BaseNameSerializer
@@ -22,6 +23,9 @@ class NameViewSet(GetPostViewSet):
 class GachiViewSet(GetPostViewSet):
     queryset = Gachi.objects.all()
     serializer_class = GachiSerializer
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    ordering_fields = ('rating', 'gachi',)
+    ordering = ('-rating')
 
     def change_rate(self, naming, delta):
         """Базовая функция для изменения рейтинга гачи."""
